@@ -1,8 +1,8 @@
 import random
 import re
 
-responses={
-    "greeting": ["Welcome to our customer support! Tell me your issue.", "Hello and welcome! How may I help you?", "Hi! I am here to solve your problem"],
+responses = {
+    "greeting": ["Hello! Welcome to our mobile repairing shop. How can I assist you today?", "Hi there! How may I help you with your mobile?", "Welcome! What seems to be the problem with your phone?"],
     "farewell": ["Thank you for choosing our mobile repairing services. Have a great day!", "Your satisfaction is our top priority. Goodbye!", "If you have any more questions, feel free to ask. Take care and goodbye!"],
     "help": ["Sure, I'm here to help. What issues are you facing with your mobile?", "How can I assist you with your mobile repair? Please let me know.", "I'm here to provide the best possible solutions for your mobile problems. What do you need help with?"],
     "screen_cracked": ["A cracked screen / display is a common issue. We can replace the screen for you. Please bring your mobile to our shop, and our technicians will take care of it.", "Oh no! A cracked screen can be quite bothersome. Don't worry, we offer screen replacement services. Visit our shop, and we'll fix it for you."],
@@ -13,24 +13,24 @@ responses={
 }
 
 def handle_inquiry(inquiry):
-    inquiry = inquiry.lower()
-    if(re.search(r"\b(?:hello|hi)\b",inquiry)):
+    inquiry= inquiry.lower()
+
+    if(re.search(r"\b(?:hello|hi)\b", inquiry)):
         return random.choice(responses["greeting"])
-    elif(re.search(r"\b(?:display|screen|cracked|damaged)\b", inquiry)):
-        return random.choice(responses["screen_cracked"])
-    elif(re.search(r"\b(?:battery|charging|charge)\b",inquiry)):
+    elif re.search(r"\b(?:help|support|resolve)\b", inquiry):
+        return random.choice(responses["help"])
+    elif re.search(r"\b(?:battery|charge)\b", inquiry):
         return random.choice(responses["battery_problem"])
     else:
         return random.choice(responses["default"])
-        
 
-print("welcome")
-print(f"Chatbot: Enter your inquiry")
+print("Cutomer Interaction Support")
+print("Type 'exit' to end the conversation.")
 while True:
-    inquiry=input("Customer: ")
-    if(inquiry.lower()=="exit"):
+    res = input("Customer: ")
+    if(res.lower()=="exit"):
         break
-    response=handle_inquiry(inquiry)
-    print(f"Chatbot: {response}")
-
-print("thank you")
+    
+    bot = handle_inquiry(res)
+    print("Chatbot:" + bot)
+print("Thank You")
