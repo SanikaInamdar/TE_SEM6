@@ -1,11 +1,6 @@
 #include <iostream>
-#define INT_MAX 2147483647
-
+#define INT_MAX 2345676
 using namespace std;
-int heuristic(int src, int dest)
-{
-    return abs(src-dest);
-}
 void prims(int graph[101][101], int N, int E)
 {
     int min=INT_MAX;
@@ -14,13 +9,13 @@ void prims(int graph[101][101], int N, int E)
     int edges=0;
     int selected[N];
     int minWeight=0;
-    for(int i=0; i<N; i++)
-    {
+
+    for(int i=0; i<N; i++){
         selected[i]=0;
     }
 
     selected[0]=1;
-    while(edges<N-1)
+    while(edges < N-1)
     {
         min=INT_MAX;
         x=0;
@@ -34,10 +29,9 @@ void prims(int graph[101][101], int N, int E)
                 {
                     if(selected[j]==0 && graph[i][j]!=0)
                     {
-                        int total = graph[i][j];
-                        if(total<min)
+                        if(graph[i][j]<min)
                         {
-                            min=total;
+                            min=graph[i][j];
                             x=i;
                             y=j;
                         }

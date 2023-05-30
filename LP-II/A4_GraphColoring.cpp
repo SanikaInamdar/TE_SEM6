@@ -35,7 +35,7 @@ bool solve(int node, int m, int N, bool graph[101][101])
     {
         return true;
     }
-
+    // iterating to assign colors
     for (int i = 1; i <= m; i++)
     {
         if (isSafe(node, graph, N, i))
@@ -47,6 +47,7 @@ bool solve(int node, int m, int N, bool graph[101][101])
                 if (solve(node + 1, m, N, graph))
                     return true;
             }
+            //backtracking
             color[node] = 0;
         }
     }
@@ -76,7 +77,13 @@ int main()
     cin >> m;
 
     bool graph[101][101];
-    memset(graph, false, sizeof graph);
+    for(int i=0; i<101; i++)
+    {
+        for(int j=0; j<101; j++)
+        {
+            graph[i][j]=0;
+        }
+    }
 
     for (int i = 0; i < E; i++)
     {
